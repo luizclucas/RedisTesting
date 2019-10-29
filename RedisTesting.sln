@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Presentation", "0 - Presentation", "{E60E2603-115D-4E27-AA2A-7B1E5BFA5A32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Domain", "1 - Domain", "{23DBBCDC-FB66-4089-AE75-164D578CF402}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Infra", "2 - Infra", "{42150CFD-6D2A-4F7E-9A13-3CBB49DA1298}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisTesting.Infra.Data", "RedisTesting.Infra.Data\RedisTesting.Infra.Data.csproj", "{9783E217-D73C-4082-9E0A-F019B6174FAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisTesting.Domain", "RedisTesting.Domain\RedisTesting.Domain.csproj", "{3EF65D2E-E2F0-4DAD-84B2-39ADE9F0335C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisTesting.WebApi", "RedisTesting.WebApi\RedisTesting.WebApi.csproj", "{65956EB9-C350-48CE-B02F-2B6FAEE469DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisTesting.SellingProject", "RedisTesting.SellingProject\RedisTesting.SellingProject.csproj", "{46CEDA5F-1760-4A64-A8F9-F333E8E22724}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisTesting.Infra.Helper", "RedisTesting.Infra.Helper\RedisTesting.Infra.Helper.csproj", "{82829D7E-CF19-4F39-8CA1-13C1694D2308}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9783E217-D73C-4082-9E0A-F019B6174FAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9783E217-D73C-4082-9E0A-F019B6174FAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9783E217-D73C-4082-9E0A-F019B6174FAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9783E217-D73C-4082-9E0A-F019B6174FAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EF65D2E-E2F0-4DAD-84B2-39ADE9F0335C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EF65D2E-E2F0-4DAD-84B2-39ADE9F0335C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EF65D2E-E2F0-4DAD-84B2-39ADE9F0335C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EF65D2E-E2F0-4DAD-84B2-39ADE9F0335C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65956EB9-C350-48CE-B02F-2B6FAEE469DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65956EB9-C350-48CE-B02F-2B6FAEE469DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65956EB9-C350-48CE-B02F-2B6FAEE469DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65956EB9-C350-48CE-B02F-2B6FAEE469DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46CEDA5F-1760-4A64-A8F9-F333E8E22724}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46CEDA5F-1760-4A64-A8F9-F333E8E22724}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46CEDA5F-1760-4A64-A8F9-F333E8E22724}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46CEDA5F-1760-4A64-A8F9-F333E8E22724}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82829D7E-CF19-4F39-8CA1-13C1694D2308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82829D7E-CF19-4F39-8CA1-13C1694D2308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82829D7E-CF19-4F39-8CA1-13C1694D2308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82829D7E-CF19-4F39-8CA1-13C1694D2308}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9783E217-D73C-4082-9E0A-F019B6174FAF} = {42150CFD-6D2A-4F7E-9A13-3CBB49DA1298}
+		{3EF65D2E-E2F0-4DAD-84B2-39ADE9F0335C} = {23DBBCDC-FB66-4089-AE75-164D578CF402}
+		{65956EB9-C350-48CE-B02F-2B6FAEE469DF} = {E60E2603-115D-4E27-AA2A-7B1E5BFA5A32}
+		{46CEDA5F-1760-4A64-A8F9-F333E8E22724} = {E60E2603-115D-4E27-AA2A-7B1E5BFA5A32}
+		{82829D7E-CF19-4F39-8CA1-13C1694D2308} = {42150CFD-6D2A-4F7E-9A13-3CBB49DA1298}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {608351B1-ACC6-4EBA-8ADA-5D5B30C6784F}
+	EndGlobalSection
+EndGlobal
