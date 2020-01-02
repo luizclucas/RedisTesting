@@ -13,7 +13,7 @@ namespace RedisTesting.Infra.Data
         {
             _lazyRedisClient = new Lazy<ConnectionMultiplexer>(() =>
             {
-                string redisServer = "18.223.23.176:6379";
+                string redisServer = "localhost:6379";
 
                 if (config != null)
                 {

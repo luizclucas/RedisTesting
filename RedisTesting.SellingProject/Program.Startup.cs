@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using RedisTesting.Infra.Helper;
@@ -15,38 +12,16 @@ namespace RedisTesting.SellingProject
 
         public static async Task Main(string[] args)
         {
-            try
-            {
-                var services = new ServiceCollection();
-                ConfigureServices(services);
-                var sp = services.BuildServiceProvider();
-                DIProps.ServiceProvider = RootServiceProvider = sp;
+            Log.Logger = new LoggerConfiguration()
+              .WriteTo.LiterateConsole()
+              .WriteTo.Seq("http://seqserver.sicluster:5341", compact: true)
+              .CreateLogger();
 
-                var environmentName = Environment.CurrentDirectory;
-                var bufferBaseName = Path.Combine(environmentName, "Logs", ".SeqBuffer");
-                string appName = "SellingProject";
-
-                Log.Logger = new LoggerConfiguration()
-                    .Enrich.WithProperty("App",appName)
-                .WriteTo.LiterateConsole()
-                .WriteTo.Seq("http://seqserver.sicluster:5341", compact: true, bufferBaseFilename: bufferBaseName)
-                .CreateLogger();
-
-                Log.Information("Starting {0}", appName);
-                await Run();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, "Unhandled Exception");
-
-                if (Debugger.IsAttached)
-                    Debugger.Break();
-            }
-            finally
-            {
-                Log.Information("Press ENTER to exit...");
-                Console.ReadLine();
-            }
+            var services = new ServiceCollection();
+            ConfigureServices(services);
+            var sp = services.BuildServiceProvider();
+            DIProps.ServiceProvider = RootServiceProvider = sp;
+            await Run();            
         }
 
         public static T GetService<T>() => RootServiceProvider.GetRequiredService<T>();
