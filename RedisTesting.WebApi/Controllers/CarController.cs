@@ -39,7 +39,7 @@ namespace RedisTesting.WebApi.Controllers
             Car car = new Car(Guid.NewGuid(), model.AutoMaker, model.Name, model.Year, model.Price);
 
             // TTL -> Time to live, in this case it's 1 minute.
-            await _redis.StringSetAsync(redisKey, car.ToJson(), TimeSpan.FromSeconds(60));
+            await _redis.StringSetAsync(redisKey, car.ToJson(), TimeSpan.FromMinutes(60));
             return Ok();
         }
 

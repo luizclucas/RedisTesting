@@ -23,7 +23,6 @@ namespace RedisTesting.SellingProject
         private static ILogger _log = Log.ForContext<Program>();
         private static int _actorCount = 5;
         public static string keyToSayImChecking = "checking-request-";
-        private static RedLockFactory _redLockFactory;
         public static void ConfigureServices(IServiceCollection services)
         {
             services.AddData();
@@ -42,24 +41,12 @@ namespace RedisTesting.SellingProject
             services.AddAllActorsFromAssemblyOf<Program>();
 
         }
-
-        private static void CreateRedFactory()
-        {
-            var existingConnectionMultiplexer1 = ConnectionMultiplexer.Connect("127.0.0.1:6379");
-
-            var multiplexers = new List<RedLockMultiplexer>{
-    existingConnectionMultiplexer1
-};
-            _redLockFactory = RedLockFactory.Create(multiplexers);
-        }
-
+  
         public static async Task Run()
         {
             var dataFactory = GetService<DataFactory>();
             var redis = dataFactory.GetRedisClient().GetDatabase();
             var pubAndSub = redis.Multiplexer.GetSubscriber();
-            CreateRedFactory();
-
 
             _log.Information("Running");
 
@@ -98,9 +85,11 @@ namespace RedisTesting.SellingProject
                 }
             });
 
+
+            /// Redis Lock Example.
             var system = GetService<ActorSystem>();
-            var workerProps = DIProps.Create<Master>().WithRouter(new SmallestMailboxPool(_actorCount));
-            system.ActorOf(workerProps, "master");
+            var props = new RoundRobinPool(5).Props(Props.Create<Master>());
+            system.ActorOf(props, "master");
             Console.ReadLine();
         }
 
@@ -138,7 +127,10 @@ namespace RedisTesting.SellingProject
                     var resource = "the-thing-we-are-locking-on";
                     var expiry = TimeSpan.FromSeconds(30);
 
-                    using (var redLock = await _redLockFactory.CreateLockAsync(resource, expiry)) // there are also non async Create() methods
+                    var redLockFactory = _dataFactory.GetRedLockFactory();
+
+
+                    using (var redLock = await redLockFactory.CreateLockAsync(resource, expiry)) // there are also non async Create() methods
                     {
                         // make sure we got the lock
                         if (redLock.IsAcquired)
@@ -149,14 +141,14 @@ namespace RedisTesting.SellingProject
                                 await Task.Delay(5000);
                                 _log.Information("Id: {0} | I Finished!", myId);
                                 await _redis.StringSetAsync(_redisKeyToFinish, true, TimeSpan.FromMinutes(5));
-                            }  
+                            }
                         }
                         else
                         {
                             _log.Information("Id: {0} | There's someone running", myId);
                             ScheduleNextRun(Run.Instance, _timeToRun);
                         }
-                    }             
+                    }
                 });
             }
 
